@@ -1,5 +1,13 @@
 import { useEffect } from "react";
-import { Card, Col, Container, Figure, Row, Spinner } from "react-bootstrap";
+import {
+  Card,
+  Col,
+  Container,
+  Figure,
+  Row,
+  Spinner,
+  Stack,
+} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../store/slices/products";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -20,11 +28,14 @@ export const Products = () => {
         <Col xs={12}>
           <h1 className="text-center">Products</h1>
         </Col>
-        {product.loading ? (
-          <Col xs={12} className="text-center">
+        {product.isLoading ? (
+          <Stack
+            direction="horizontal"
+            gap={3}
+            className="justify-content-center">
             <Spinner animation="border" variant="primary" />
             <p className="mt-3">Loading...</p>
-          </Col>
+          </Stack>
         ) : (
           <>
             {product.data && product.data.length > 0 ? (
